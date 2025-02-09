@@ -1,0 +1,280 @@
+<center style="padding-bottom: 25%;">
+  <section class="msger">
+    <header class="msger-header">
+      <a href="viewuser_artist">
+        <span class="arrow">&#8592;</span>
+      </a>
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i> Chat with {{ name }}
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+      </div>
+      <h3 style="color: white;">
+        <img src="../static/images/user.png" height="30px" width="30px" alt="">
+        <div class="a">{{name}}</div>
+      </h3>
+    </header>
+
+    <main id="chat" class="msger-chat">
+      {% for i in data['rg'] %}
+        {% if i['sender_type'] == 'user' %}
+          <div class="msg left-msg">
+            <div class="msg-img" style="background-image: url(../static/images/user.png)"></div>
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">{{tname}}</div>
+              </div>
+              <div class="msg-text">
+                {{i['message']}}
+                <div class="msg-info-time">{{i['time']}}</div>
+              </div>
+            </div>
+          </div>
+        {% elif i['sender_type'] == 'artist' %}
+          <div class="msg right-msg">
+            <div class="msg-img" style="background-image: url(../static/images/user.png)"></div>
+            <div class="msg-bubble">
+              <div class="msg-info"></div>
+              <div class="msg-text">
+                {{i['message']}}
+                <div class="msg-info-time">{{i['time']}}</div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </main>
+
+    <form action="" class="msger-inputarea" method="post">
+      <input type="text" class="msger-input" name="chat" placeholder="Enter your message..." autocomplete="off">
+      <button type="submit" name="submit" class="msger-send-btn"><i class="fas fa-paper-plane"></i> SEND</button>
+    </form>
+  </section>
+</center>
+
+<style>
+:root {
+  --body-bg: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+  --msger-bg: #2C3E50;
+  --border: 2px solid #444;
+  --left-msg-bg: #ECF0F1;
+  --right-msg-bg: #3498DB;
+  --input-bg: #34495E;
+  --send-btn-bg: #27AE60;
+  --send-btn-hover: #2ECC71;
+  --left-msg-color: #2C3E50;
+  --right-msg-color: white;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  font-family:sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.msger {
+ 
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 867px;
+  height: 80vh;
+  border: var(--border);
+  border-radius: 15px;
+  background: var(--msger-bg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.msger-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #34495E;
+  color: #ECF0F1;
+  border-bottom: var(--border);
+}
+
+.msger-header-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.msger-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background-color: #ECF0F1;
+  scroll-behavior: smooth;
+}
+
+.msger-chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+  background-color: #95A5A6;
+  border-radius: 4px;
+}
+
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.msg-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.msg-bubble {
+  max-width: 70%;
+  padding: 12px 15px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.msg-info-name {
+  font-weight: bold;
+  color: #34495E;
+}
+
+.msg-info-time {
+  font-size: 0.75em;
+  color: black;
+}
+
+.left-msg .msg-bubble {
+  background: var(--left-msg-bg);
+  color: var(--left-msg-color);
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+
+.right-msg .msg-bubble {
+  background: var(--right-msg-bg);
+  color: var(--right-msg-color);
+  border-bottom-right-radius: 0;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.msger-inputarea {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: var(--input-bg);
+  border-top: var(--border);
+}
+
+.msger-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background: #2C3E50;
+  color: white;
+  font-size: 1em;
+  margin-right: 10px;
+  outline: none;
+}
+
+.msger-input:focus {
+  background-color: #2C3E50;
+}
+
+.msger-send-btn {
+  padding: 10px 20px;
+  background: var(--send-btn-bg);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.msger-send-btn:hover {
+  background: var(--send-btn-hover);
+}
+
+.arrow {
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: #2980B9;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background-color: #3498DB;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .msger {
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  .msg-bubble {
+    max-width: 85%;
+  }
+
+  .msger-header-title {
+    font-size: 1em;
+  }
+}
+</style>
+
+<script>
+// Function to scroll to the bottom of the chat
+function scrollToBottom() {
+  var chat = document.getElementById('chat');
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// Scroll to bottom on page load
+window.onload = function() {
+  scrollToBottom();
+};
+</script>

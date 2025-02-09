@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%include 'adminheader.html'%}
+    <br><br><br><br><br>
+
+<center>
+    <h2>Feedback</h2>
+    <br><br>
+
+    <table border="1" class="table table-info"  style="width: 800px;">
+        <tr>
+            <th>Feedback</th>
+            <th>Date</th>
+
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['feedback']}}</td>
+            <td>{{i['date']}}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+<br><br><br><br><br><br>
+    {%include 'footer.html'%}
+</body>
+</html>
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>

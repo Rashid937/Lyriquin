@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>artist</title>
+</head>
+
+
+<body>
+
+    {%include 'public_header.html'%}
+
+    <br><br><br>
+
+
+    <form  method="post"  style="margin-left: 300px;">
+        <table>
+        <tr>
+            <th style="font-size: 25px;">First Name</th>
+            <td><input type="text" name="fname" class="form-control"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Last Name</th>
+            <td><input type="text" name="lname"  class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Email</th>
+            <td><input type="email" name="femail" class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Gender</th>
+            <td><input type="radio" name="fgender" value="male" > <span style="font-size: 20px;">Male</span> 
+            
+            <input type="radio" name="fgender" value="female"> <span style="font-size: 20px;"> Female</span>
+                
+            <input type="radio" name="fgender" value="others"> <span style="font-size: 20px;">Others </span></td>  
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Phone</th>
+            <td><input type="text" name="fnumb" class="form-control"  style="margin-top: 20px;"  pattern="[0-9]{10}"  placeholder="10-digit number"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Place</th>
+            <td><input type="text" name="fplace" class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Type</th>
+            <td><input type="text" name="fqual" class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Username</th>
+            <td><input type="text" name="uname" class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <th style="font-size: 25px;">Password</th>
+            <td><input type="password" name="psw" class="form-control"  style="margin-top: 20px;"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="artist"  class="btn btn-success"></td>
+        </tr>
+     </table>
+    </form>
+
+
+<br><br><br><br><br><br><br><br>
+
+<style>
+    body {
+        background-image: url("/static/assets/img/pexels-pixabay-45238.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+    {%include 'footer.html'%}
+
+</body>
+</html>

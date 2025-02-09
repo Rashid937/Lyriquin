@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {%include 'artistheader.html'%}
+
+{% if data['up'] %}
+    <form  method="post">
+        <table>
+        <tr>
+            <th>Work name</th>
+            <td><input type="text" name="work_name"  value="{{data['up'][0]['workname']}}"></td>
+        </tr>
+        <tr>
+            <th>status</th>
+            <td><input type="text" name="status" value="{{data['up'][0]['status']}}"></td>
+        </tr>
+        <tr>
+            <th>amount</th>
+            <td><input type="text" name="amount"  value="{{data['up'][0]['amount']}}"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" name="update" value="update"></td>
+        </tr>
+     </table>
+    </form>
+
+{% else %}
+<br><br><br><br>
+
+<center>
+
+
+
+    <form  method="post" enctype="multipart/form-data">
+        <table>
+        <tr>
+            <th>Work name</th>
+            <td><input class="form-control" type="text" name="work_name"></td>
+        </tr>
+        <tr>
+            <th>path</th>
+            <td><input class="form-control" type="file" name="path"></td>
+        </tr>
+        <tr>
+            <th>amount</th>
+            <td><input class="form-control" type="text" name="amount"></td>
+        </tr>
+        
+        <tr>
+            <td><input class="form-control" type="submit" name="submit"></td>
+        </tr>
+     </table>
+    </form>
+
+</center>
+<br><br>
+<center>
+
+    <h2>Works</h2>
+    <br><br>
+    
+
+    <table border="1" class="table table-info"  style="width: 1400px;">
+        <tr>
+            <th>Workname</th>
+            <th>Path</th>
+            <th>Amount</th>
+            <th>status</th>
+            <th>update</th>
+            <th>delete</th>
+            
+   
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['workname']}}</td>
+            <td><img src="{{ 'static/' + i['path'].split('static').pop() }}" id="image" height="100px" width="100px" alt="{{ i['path'] }}"></td>
+
+            <td>{{i['amount']}}</td>
+            <td>{{i['status']}}</td>
+            <td><a href="?action=update&id={{i['workid']}}">Update</a></td>
+            <td><a href="?action=delete&id={{i['workid']}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+
+</center>
+<br><br><br><br><br><br>
+{%include 'footer.html'%}
+    
+</body>
+</html>
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>
+
+<script> document.addEventListener("DOMContentLoaded", function() { var img = document.getElementById("image"); var src = img.getAttribute("src"); if (src.charAt(0) === '/') { src = src.substring(1); img.setAttribute("src", src); } });

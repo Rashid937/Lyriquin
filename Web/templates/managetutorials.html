@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {%include 'artistheader.html'%}
+
+{% if data['up'] %}
+    <form  method="post" >
+        <table>
+        <tr>
+            <th>Title</th>
+            <td><input type="text" name="title"  value="{{data['up'][0]['title']}}"></td>
+        </tr>
+        
+        <tr>
+            <th>Date</th>
+            <td><input type="date" name="date"  value="{{data['up'][0]['date']}}"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" name="update" value="update"></td>
+        </tr>
+     </table>
+    </form>
+
+{% else %}
+<br><br><br><br>
+<center>    
+
+    <form  method="post" enctype="multipart/form-data">
+        <table>
+        <tr>
+            <th>Title</th>
+            <td><input class="form-control" type="text" name="title"></td>
+        </tr>
+        <tr>
+            <th>path</th>
+            <td><input class="form-control" type="file" name="path"></td>
+        </tr>
+        <tr>
+            <th>date</th>
+            <td><input class="form-control" type="date" name="date"></td>
+        </tr>
+        
+        <tr>
+            <td><input class="form-control" type="submit" name="submit"></td>
+        </tr>
+     </table>
+    </form>
+</center>
+<br><br>
+<center>
+
+
+
+
+    <h2>Tutorials</h2>
+    <br><br>
+    
+    <table border="1" class="table table-info" style="width: 1400px;">
+        <tr>
+            <th>Title</th>
+            <th>Path</th>
+            <th>date</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['title']}}</td>
+            <td>
+                <video id="video" width="100" height="100" controls>
+                    <source src="{{i['path']}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>{{i['date']}}</td>
+            <td><a href="?action=update&id={{i['tutorialid']}}">Update</a></td>
+            <td><a href="?action=delete&id={{i['tutorialid']}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endif %}
+</center>
+<br><br><br><br><br><br>
+
+
+{%include 'footer.html'%}
+    
+</body>
+</html>
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>
+
+<script> document.addEventListener("DOMContentLoaded", function() { var img = document.getElementById("image"); var src = img.getAttribute("src"); if (src.charAt(0) === '/') { src = src.substring(1); img.setAttribute("src", src); } });

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 30px auto;
+            background-color: #f9f9f9;
+        }
+        th, td {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+        }
+        .btn-success {
+            background-color: green;
+            color: white;
+        }
+        .btn-outline-danger {
+            border: 1px solid red;
+            color: red;
+            padding: 8px 12px;
+        }
+        .reply-link {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'artistheader.html' %}
+
+    <br><br>
+
+    <div class="container">
+        <h2>Requests</h2>
+        <br>
+
+        <table>
+            <tr>
+                <th>User Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Reply</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Actions</th>
+                <th>Reply</th>
+            </tr>
+
+            {% for i in data.view %}
+            <tr>
+                <td>{{ i.firstname }} {{ i.lastname }}</td>
+                <td>{{ i.description }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.reply }}</td>
+                <td>{{ i.status }}</td>
+                <td>{{ i.amount }}</td>
+                <td>
+                    {% if i.status == 'pending' %}
+                        <a href="?action=accept&id={{ i.requestid }}" class="btn btn-success">Accept</a>
+                        <a href="?action=reject&id={{ i.requestid }}" class="btn btn-outline-danger">Reject</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/r_reply?id={{ i.requestid }}" class="reply-link">Reply</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>    
+    </div>
+
+    <br><br>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

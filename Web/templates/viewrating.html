@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {%include 'artistheader.html'%}
+    <br><br><br><br><br>
+
+    <center>
+
+    <h2>Ratings</h2>
+    <br><br>
+
+    <table border="1" class="table table-info"  style="width: 1400px;">
+        <tr>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Date</th>
+
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['rating']}}</td>
+            <td>{{i['review']}}</td>
+            <td>{{i['date']}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+<br><br><br><br><br><br><br><br>
+
+    {%include 'footer.html'%}
+</body>
+</html>
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>

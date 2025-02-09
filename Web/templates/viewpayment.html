@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {%include 'artistheader.html'%}
+    <br><br><br><br><br>
+    
+    <center>
+
+    <h2>Payments</h2>
+    <br><br>
+
+    <table border="1" class="table table-info"  style="width: 1400px;">
+        <tr>
+            <th>Bookingmasterid</th>
+            <th>User</th>
+            <th>Amount</th>
+            <th>Status</th>
+
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['bookingmasterid']}}</td>
+            <td>{{i['firstname']}} {{i['lastname']}}</td>
+            
+            <td>{{i['amount']}}</td>
+            <td>{{i['status']}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+    <br><br><br><br><br><br><br>
+
+    {%include 'footer.html'%}
+</body>
+</html>
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%include 'adminheader.html'%}
+    <br><br><br><br><br>
+<center>
+
+    <h2>Works</h2>
+    <br><br>
+
+    <table border="1" class="table table-info"  style="width: 1400px;">
+        <tr>
+            <th>Work name</th>
+            <th>Path</th>
+            <th>Amount</th>
+            <th>Status</th>
+
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['workname']}}</td>
+            <td><img src="{{i['path']}}" id="image" height="100px" width="100px" alt=""></td>
+            <td>{{i['amount']}}</td>
+            <td>{{i['status']}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+<br><br><br><br><br><br>
+    {%include 'footer.html'%}
+</body>
+</html>
+
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>
+
+<script> document.addEventListener("DOMContentLoaded", function() { var img = document.getElementById("image"); var src = img.getAttribute("src"); if (src.charAt(0) === '/') { src = src.substring(1); img.setAttribute("src", src); } });

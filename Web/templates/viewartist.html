@@ -1,0 +1,55 @@
+
+    
+{%include 'adminheader.html'%}
+<br><br><br>
+    
+
+     <h2 class="text-center">Artists</h2>
+     <br><br>
+
+    <table class="table table-info"  style="width: 1400px;">
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th>Place</th>
+            <th>Type</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i['firstname']}}</td>
+            <td>{{i['lastname']}}</td>
+            <td>{{i['email']}}</td>
+            <td>{{i['gender']}}</td>
+            <td>{{i['phone']}}</td>
+            <td>{{i['place']}}</td>
+            <td>{{i['qualification']}}</td>
+            {% if i['usertype']=='pending' %}
+            <td><a href="?action=accept&id={{i['loginid']}}" class="btn btn-success">Accept</a></td>
+            <td><a href="?action=reject&id={{i['loginid']}}" class="btn  btn-outline-danger">Reject</a></td>
+            {% elif i['usertype'] == 'artist' %}
+            <td>Accepted</td>
+            <td><a href="?action=reject&id={{i['loginid']}}" class="btn  btn-outline-danger">Reject</a></td>
+            {% elif i['usertype'] == 'rejected' %}
+            <td>Rejected</td>
+            <td></td>
+           
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{%include 'footer.html'%}
+
+
+<style>
+    th,td{
+        text-align: center;
+    }
+</style>
